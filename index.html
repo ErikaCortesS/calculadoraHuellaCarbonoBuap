@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <title>Huella de Carbono</title>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+  </head>
+
+<body style="background-color:#003c5e;">
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav d-flex justify-content-between align-items-center">
+                      <!-- ***** Logo Start ***** -->
+                      <a href="index.html" class="logo">
+                        ¡Hola, comunidad BUAP!
+                      </a>
+                      <img src="assets/images/logo.png" style="max-width: 200px">
+                      <!-- ***** Logo End ***** -->
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <!-- ***** Main Banner Area Start ***** -->
+  <section class="section main-banner" id="top" data-section="section1">
+    <video autoplay muted loop id="bg-video">
+      <source src="assets/images/buap.mp4" type="video/mp4" />
+    </video>
+
+    <div class="video-overlay header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="caption">
+              <br><br><br>
+              <h2>¡Calcula tu Huella de Carbono!</h2>
+              <p>Ahora es tu momento de contribuir al cuidado de nuestro planeta. Te invitamos a dar el primer paso hacia un estilo de vida más ecológico y sostenible calculando tu huella de carbono.</p>
+              <hr>
+              <p>Gracias por ser parte del cambio</p>
+              <br>
+              <div class="main-button-red">
+                <a href="calculadora.html">Comienza ahora</a>
+              </div>
+              <!--Aprender más-->
+              <div>
+                <img src="assets/images/conocemas.png" alt="Imagen para aprender más" id="openModalBtn" style="max-width: 25% !important">
+                <div id="myModal" class="modal">
+                  <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p style="color: white; background-color: green;">¿Qué es la huella de carbono?<br></p>
+                    <p style="color: black; background-color: rgb(161, 207, 161)">La huella de carbono es una medida de la cantidad de emisiones de gases de efecto invernadero, especialmente dióxido de carbono (CO2), que se liberan como resultado de las actividades humanas. <br> Es una forma de medir la contribución de una entidad al cambio climático.<br></p>
+                    <p style="color: white; background-color: green;">Con la calculadora de huella de carbono de la BUAP, podrás:<br></p>
+                    <ul style="color: black; background-color: rgb(161, 207, 161)">
+                      <li>* Evaluar el impacto ambiental de tus acciones cotidianas.</li>
+                      <li>* Identificar áreas en las que puedes reducir tu huella de carbono.</li>
+                      <li>* Contribuir al compromiso de la BUAP con la sostenibilidad ambiental.</li>
+                    </ul>
+                    <p style="color: white; background-color: green;">BUAP, ¿Un modelo de desarrollo sustentable?<br></p>
+                    <p style="color: black; background-color: rgb(161, 207, 161)">La Benemérita Universidad Autónoma de Puebla (BUAP) ha implementado medidas para minimizar su huella ecológica y promover prácticas sustentables en todos sus facultades. Estas medidas incluyen la creación de la Coordinación de Desarrollo Sustentable con el fin de promover y coordinar el desarrollo de proyectos e iniciativas orientadas hacia la sustentabilidad, además de trabajar en conjunto con las distintas áreas de la universidad incluyendo facultades, áreas administrativas, institutos de investigación, etc.</p>
+                  </div>
+                </div>
+              </div>
+              <!--Fin Aprender más-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer style="display: flex; justify-content: center; align-items: center;">
+    <div>
+      <br>
+      <img src="assets/images/logo2.png" alt="Logo BUAP" style="max-width: 230px">
+    </div>
+  </footer>
+
+  <script>
+    var modal = document.getElementById('myModal');
+    var btn = document.getElementById('openModalBtn');
+    var span = document.getElementsByClassName('close')[0];
+
+    // Abre el modal cuando se hace clic en la imagen
+    btn.onclick = function() {
+      modal.style.display = 'block';
+    }
+
+    // Cierra el modal cuando se hace clic en el botón de cierre (X)
+    span.onclick = function() {
+      modal.style.display = 'none';
+    }
+
+    // Cierra el modal si se hace clic fuera de él
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

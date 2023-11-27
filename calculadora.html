@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Huella de Carbono</title>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+  </head>
+
+<body style="background-color: #003c5e;">
+  <!-- Encabezados -->
+  <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-sm-8">
+          <div class="left-content">
+            <a href="index.html"><p>Calculadora de huella de carbono</p></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="heading-page header-text" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12" style="background-color: rgb(82,160,40,0.3)">
+          <h2>Listo, empecemos a calcular.</h2>
+          <h6>El cuestionario toma menos de 5 minutos.</h6>
+          <br>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preguntas -->
+  <section class="meetings-page" id="meetings">
+    <div class="container">
+      <div class="col-lg-12">
+        <div class="row grid">
+
+          <div class="col-lg-4 templatemo-item-col all soon">
+            <div class="meeting-item">
+              <div class="thumb">
+                <div class="price">
+                  <span>1</span>
+                </div>
+                <img src="assets/images/1.jpg" alt="">
+              </div>
+              <div class="down-content">
+                <form id="calcularHuella">
+                  <label for="nombre" class="form-label">¡Hola! ¿Cuál es tu nombre?</label><br>
+                  <input type="text" class="form-control" id="nombre" name="nombre" required>                  
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 templatemo-item-col all imp">
+            <div class="meeting-item">
+              <div class="thumb">
+                <div class="price">
+                  <span>2</span>
+                </div>
+                <img src="assets/images/2.jpg" alt="">
+              </div>
+              <div class="down-content">
+                <form id="calcularHuella">
+                  <label for="area" class="form-label">¿A qué área de la universidad perteneces?</label><br>
+                  <select name="area" class="form-control">
+                    <option value="">Selecciona una opción</option>
+                    <option value="Admin">Área Económico - Administrativa</option>
+                    <option value="Ing">Área de Ingenierías y Ciencias Exactas</option>
+                    <option value="Hum">Área de Ciencias Sociales y Humanidades</option>
+                    <option value="Salud">Área de las Ciencias Naturales y de Salud</option>
+                </select>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 templatemo-item-col all imp">
+            <div class="meeting-item">
+              <div class="thumb">
+                <div class="price">
+                  <span>3</span>
+                </div>
+                <img src="assets/images/3.jpg" alt="">
+              </div>
+              <div class="down-content">
+                <form id="calcularHuella">
+                  <label for="transporte" class="form-label">¿Qué medio de transporte usas para llegar a la universidad?</label><br>
+                  <select name="transporte" class="form-control">
+                    <option value="">Selecciona una opción</option>
+                    <option value="stu">STU</option>
+                    <option value="moto">Motocicleta</option>
+                    <option value="bici">Bicicleta</option>
+                    <option value="pub">Transporte público</option>
+                    <option value="vehiculo">Vehículo particular</option>
+                    <option value="pie">A pie</option>
+                </select>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 templatemo-item-col all imp">
+            <div class="meeting-item">
+              <div class="thumb">
+                <div class="price">
+                  <span>4</span>
+                </div>
+                <img src="assets/images/holaa.jpg" alt="">
+              </div>
+              <div class="down-content">
+                <form id="calcularHuella">
+                  <label for="tiempo" class="form-label">¿Cuánto tiempo haces de tu casa a la universidad?</label><br>
+                  <select name="tiempo" class="form-control">
+                    <option value="">Selecciona una opción</option>
+                    <option value="30min">De 0 a 30 min</option>
+                    <option value="60min">De 30 a 60 min</option>
+                    <option value="mas1hora">Más de 1 hora</option>
+                </select>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 templatemo-item-col all imp">
+            <div class="meeting-item">
+              <div class="thumb">
+                <div class="price">
+                  <span>5</span>
+                </div>
+                <img src="assets/images/4.jpg" alt="">
+              </div>
+              <div class="down-content">
+                <form id="calcularHuella">
+                  <label for="transporteUni" class="form-label">¿Dentro de la universidad, qué medio de transporte usas?</label><br>
+                  <select name="transporteUni" class="form-control">
+                    <option value="">Selecciona una opción</option>
+                    <option value="lobobus">Lobobus</option>
+                    <option value="lobobici">Lobobici</option>
+                    <option value="pie">A pie</option>
+                </select>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 templatemo-item-col all imp">
+            <div class="meeting-item">
+              <div class="thumb">
+                <div class="price">
+                  <span>6</span>
+                </div>
+                <img src="assets/images/buap.jpg" alt="">
+              </div>
+              <div class="down-content">
+                <form id="calcularHuella">
+                  <label for="transporteUni" class="form-label">¿Cuántos días a la semana vas a la universidad?</label><br>
+                  <select name="transporteUni" class="form-control">
+                    <option value="">Selecciona una opción</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                </select>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 templatemo-item-col all imp">
+            <div class="meeting-item">
+              <div class="thumb">
+                <div class="price">
+                  <span>7</span>
+                </div>
+                <img src="assets/images/7.jpg" alt="">
+              </div>
+              <div class="down-content">
+                <form id="calcularHuella">
+                  <label for="transporteUni" class="form-label">¿Cómo es tu horario de entrada a clases?</label><br>
+                  <select name="transporteUni" class="form-control">
+                    <option value="">Selecciona una opción</option>
+                    <option value="7a8">De 7 a 8 am</option>
+                    <option value="mas8">Después de las 8 am</option>
+                </select>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 templatemo-item-col all imp">
+            <div class="meeting-item">
+              <div class="thumb">
+                <div class="price">
+                  <span>8</span>
+                </div>
+                <img src="assets/images/8.jpg" alt="">
+              </div>
+              <div class="down-content">
+                <form id="calcularHuella">
+                  <label for="transporteUni" class="form-label">¿Cómo es tu horario de salida de clases?</label><br>
+                  <select name="transporteUni" class="form-control">
+                    <option value="">Selecciona una opción</option>
+                    <option value="antes7">Antes de las 7 pm</option>
+                    <option value="despues7">Después de las 7 pm</option>
+                </select>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 templatemo-item-col all imp">
+            <div class="meeting-item">
+              <div class="thumb">
+                <div class="price">
+                  <span>9</span>
+                </div>
+                <img src="assets/images/9.jpg" alt="">
+              </div>
+              <div class="down-content">
+                <form id="calcularHuella">
+                  <label for="transporteUni" class="form-label">¿Las aulas, cubículos u oficinas de tu facultad cuentan con aire acondicionado?</label><br>
+                  <select name="transporteUni" class="form-control">
+                    <option value="">Selecciona una opción</option>
+                    <option value="aireSi">Si</option>
+                    <option value="aireNo">No</option>
+                </select>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 templatemo-item-col all imp">
+            <div class="meeting-item">
+              <div class="thumb">
+                <div class="price">
+                  <span>10</span>
+                </div>
+                <img src="assets/images/10.jpg" alt="">
+              </div>
+              <div class="down-content">
+                <form id="calcularHuella">
+                  <label for="transporteUni" class="form-label">¿Sueles cargar tus dispositivos electrónicos dentro de la universidad?</label><br>
+                  <select name="transporteUni" class="form-control">
+                    <option value="">Selecciona una opción</option>
+                    <option value="cargarSi">Si</option>
+                    <option value="cargarNo">No</option>
+                </select>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 templatemo-item-col all imp">
+            <div class="meeting-item">
+              <div class="thumb">
+                <div class="price">
+                  <span>11</span>
+                </div>
+                <img src="assets/images/11.jpg" alt="">
+              </div>
+              <div class="down-content">
+                <form id="calcularHuella">
+                  <label for="transporteUni" class="form-label">¿Consumes alimentos vendidos dentro de la universidad?</label><br>
+                  <select name="transporteUni" class="form-control">
+                    <option value="">Selecciona una opción</option>
+                    <option value="comidaSi">Si</option>
+                    <option value="comidaNo">No</option>
+                </select>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 templatemo-item-col all imp">
+            <div class="meeting-item">
+              <div class="thumb">
+                <div class="price">
+                  <span>12</span>
+                </div>
+                <img src="assets/images/buap1.jpg" alt="">
+              </div>
+              <div class="down-content">
+                <form id="calcularHuella">
+                  <label for="transporteUni" class="form-label">¿Con qué frecuencias acudes a los sanitarios?</label><br>
+                  <select name="transporteUni" class="form-control">
+                    <option value="">Selecciona una opción</option>
+                    <option value="1vez">1 vez</option>
+                    <option value="2veces">2 a 4 veces</option>
+                    <option value="mas4veces">Más de 4 veces</option>
+                </select>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+            <div class="main-button-red">
+              <img src="assets/images/huella2.png" alt="Imagen descriptiva" style="width: 100px">
+              <button type="button" class="btn btn-success" onclick="CalcularHuella()">Calcular</button>
+            </div>
+          </div>
+
+          <br><br><hr>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pie de pagina-->
+  <footer style="display: flex; justify-content: center; align-items: center;">
+    <div>
+      <br>
+      <img src="assets/images/logo2.png" alt="Logo BUAP" style="max-width: 230px">
+    </div>
+  </footer>
+
+</body>
+</html>
