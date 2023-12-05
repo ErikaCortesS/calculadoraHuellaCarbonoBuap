@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Template Mo">
+    <title>Resultados de la Huella de Carbono</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+
+    <style>
+      /* Estilo para la animación */
+      @keyframes moveGraph {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(45px); /* Cambia la distancia de la animación si deseas */
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+      /* Aplica la animación a la gráfica */
+      #graficaBarras {
+        animation: moveGraph 2s 2s; /* Puedes ajustar la duración y repetición de la animación */
+      }
+    </style>
+  </head>
+
+<body style="background-color:#085008db">
+  <header class="header-area header-sticky">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav" !important>
+                      <!-- ***** Logo Start ***** -->
+                      <a href="index.html" class="logo" style="text-align: center;" !important>
+                        Calculando...
+                      </a>
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <section class="heading-page header-text" id="top" style="padding-top: 0px; background-image: none;" !important>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="meetings-page" id="meetings">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="meeting-single-item">
+                <div class="thumb">
+                  
+                </div>
+                <div class="down-content">
+                  <h1>Resultados de tu Huella de Carbono</h1>
+
+                  <div id="resultadoHuella"></div>
+                  <div id="mensaje"></div>
+                  <div id="graficaBarras" style="width: 1200px; height: 400px;" class="col-lg-12"></div>
+
+                  <script>
+                    // Obtener el valor de la huella de carbono de los parámetros de la URL
+                    const params = new URLSearchParams(window.location.search);
+                    const huellaCarbono = parseFloat(params.get('huella'));
+
+                    
+
+                    // Mostrar el resultado de la huella de carbono en la página
+                    const resultadoElemento = document.getElementById('resultadoHuella');
+                    resultadoElemento.textContent = `Tu huella de carbono es: ${huellaCarbono.toLocaleString('es-ES', {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })} kg de CO\u2082`;
+
+
+
+                    // Mostrar mensaje si la huella de carbono es alta
+                    const mensajeElemento = document.getElementById('mensaje');
+                    if (huellaCarbono >= 1000) {
+                      mensajeElemento.textContent = '¡La huella de carbono es demasiado alta! Aparentemente es poco, pero imagina que cada habitante en el estado produzca esa cantidad cada día. ';
+                      mensajeElemento.style.color = 'red'; // Cambiar el color del mensaje si se cumple la condición
+                    } else {
+                      mensajeElemento.textContent = '¡Estás haciendo un buen trabajo!';
+                      mensajeElemento.style.color = 'blue'; // Cambiar el color del mensaje si se cumple la condición
+                    }
+
+                    // Calcular el porcentaje respecto a 7.8 millones de toneladas
+                    const total = 7800000; // 7.8 millones de toneladas
+                    const porcentaje = (huellaCarbono / total) * 100;
+
+                    // Crear la gráfica de barras
+                    const data = [{
+                      x: ['Tu Huella de Carbono', 'Huella de carbono de Puebla'],
+                      y: [porcentaje, 100 - porcentaje],
+                      type: 'bar',
+                      marker: {
+                        color: ['red', 'green'] // Colores para las barras (rojo para la huella de carbono y verde para el restante)
+                      }
+                    }];
+                    const layout = {
+                      title: 'Porcentaje de tu Huella de Carbono respecto a la Huella generada por el estado de Puebla (7.8 millones de toneladas en el 2008)',
+                    };
+                    Plotly.newPlot('graficaBarras', data, layout);
+                  </script>
+                  <div>
+                    <p>La reducción de la huella de carbono es esencial para contrarrestar el cambio climático y proteger nuestro entorno.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="main-button-red">
+                <a href="index.html">Salir</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Pie de pagina-->
+    <br>
+  <footer style="display: flex; justify-content: center; align-items: center; background-color: #003c5e;">
+    <div>
+      <br>
+      <img src="assets/images/logo2.png" alt="Logo BUAP" style="max-width: 230px">
+    </div>
+  </footer>
+
+  </section>
+</body>
+</html>

@@ -6,7 +6,6 @@
     <title>Huella de Carbono</title>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
     <link rel="stylesheet" href="assets/css/owl.css">
@@ -164,8 +163,8 @@
               </div>
               <div class="down-content">
                 <form id="calcularHuella">
-                  <label for="transporteUni" class="form-label">¿Cuántos días a la semana vas a la universidad?</label><br>
-                  <select name="transporteUni" class="form-control">
+                  <label for="dias" class="form-label">¿Cuántos días a la semana vas a la universidad?</label><br>
+                  <select name="dias" class="form-control">
                     <option value="">Selecciona una opción</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -190,8 +189,8 @@
               </div>
               <div class="down-content">
                 <form id="calcularHuella">
-                  <label for="transporteUni" class="form-label">¿Cómo es tu horario de entrada a clases?</label><br>
-                  <select name="transporteUni" class="form-control">
+                  <label for="entrada" class="form-label">¿Cómo es tu horario de entrada a clases?</label><br>
+                  <select name="entrada" class="form-control">
                     <option value="">Selecciona una opción</option>
                     <option value="7a8">De 7 a 8 am</option>
                     <option value="mas8">Después de las 8 am</option>
@@ -211,11 +210,11 @@
               </div>
               <div class="down-content">
                 <form id="calcularHuella">
-                  <label for="transporteUni" class="form-label">¿Cómo es tu horario de salida de clases?</label><br>
-                  <select name="transporteUni" class="form-control">
+                  <label for="salida" class="form-label">¿Cómo es tu horario de salida de clases?</label><br>
+                  <select name="salida" class="form-control">
                     <option value="">Selecciona una opción</option>
-                    <option value="antes7">Antes de las 7 pm</option>
-                    <option value="despues7">Después de las 7 pm</option>
+                    <option value="antes6">Antes de las 6 pm</option>
+                    <option value="despues6">Después de las 6 pm</option>
                 </select>
                 </form>
               </div>
@@ -232,8 +231,8 @@
               </div>
               <div class="down-content">
                 <form id="calcularHuella">
-                  <label for="transporteUni" class="form-label">¿Las aulas, cubículos u oficinas de tu facultad cuentan con aire acondicionado?</label><br>
-                  <select name="transporteUni" class="form-control">
+                  <label for="aire" class="form-label">¿Las aulas, cubículos u oficinas de tu facultad cuentan con aire acondicionado?</label><br>
+                  <select name="aire" class="form-control">
                     <option value="">Selecciona una opción</option>
                     <option value="aireSi">Si</option>
                     <option value="aireNo">No</option>
@@ -253,8 +252,8 @@
               </div>
               <div class="down-content">
                 <form id="calcularHuella">
-                  <label for="transporteUni" class="form-label">¿Sueles cargar tus dispositivos electrónicos dentro de la universidad?</label><br>
-                  <select name="transporteUni" class="form-control">
+                  <label for="cargar" class="form-label">¿Sueles cargar tus dispositivos electrónicos dentro de la universidad?</label><br>
+                  <select name="cargar" class="form-control">
                     <option value="">Selecciona una opción</option>
                     <option value="cargarSi">Si</option>
                     <option value="cargarNo">No</option>
@@ -274,8 +273,8 @@
               </div>
               <div class="down-content">
                 <form id="calcularHuella">
-                  <label for="transporteUni" class="form-label">¿Consumes alimentos vendidos dentro de la universidad?</label><br>
-                  <select name="transporteUni" class="form-control">
+                  <label for="comida" class="form-label">¿Consumes alimentos vendidos dentro de la universidad?</label><br>
+                  <select name="comida" class="form-control">
                     <option value="">Selecciona una opción</option>
                     <option value="comidaSi">Si</option>
                     <option value="comidaNo">No</option>
@@ -295,8 +294,8 @@
               </div>
               <div class="down-content">
                 <form id="calcularHuella">
-                  <label for="transporteUni" class="form-label">¿Con qué frecuencias acudes a los sanitarios?</label><br>
-                  <select name="transporteUni" class="form-control">
+                  <label for="sanitarios" class="form-label">¿Con qué frecuencias acudes a los sanitarios?</label><br>
+                  <select name="sanitarios" class="form-control">
                     <option value="">Selecciona una opción</option>
                     <option value="1vez">1 vez</option>
                     <option value="2veces">2 a 4 veces</option>
@@ -328,5 +327,121 @@
     </div>
   </footer>
 
+  <script>
+    function CalcularHuella() {
+      // Lógica de cálculo de la huella de carbono
+      let nombre = document.getElementById('nombre').value;
+      let area = document.getElementsByName('area')[0].value;
+      let transporte = document.getElementsByName('transporte')[0].value;
+      let tiempo = document.getElementsByName('tiempo')[0].value;
+      let transporteUni = document.getElementsByName('transporteUni')[0].value;
+      let dias = document.getElementsByName('dias')[0].value;
+      let entrada = document.getElementsByName('entrada')[0].value;
+      let salida = document.getElementsByName('salida')[0].value;
+      let aire = document.getElementsByName('aire')[0].value;
+      let cargar = document.getElementsByName('cargar')[0].value;
+      let comida = document.getElementsByName('comida')[0].value;
+      let sanitarios = document.getElementsByName('sanitarios')[0].value;
+
+      //Cálculo de huella de carbono anual kgCO/año para transporte (Gasolina)
+      let huellaTransporte = 0;
+      if (transporte === 'stu' && tiempo == '30min') {
+        huellaTransporte = (3 * 369) * 7.9;
+      } else if (transporte === 'stu' && tiempo == '60min') {
+        huellaTransporte = (6 * 360) * 7.9;
+      } else if (transporte === 'stu' && tiempo == 'mas1hora') {
+        huellaTransporte = (18 * 360) * 7.9;
+      } else if (transporte === 'moto' && tiempo == '30min') {
+        huellaTransporte = (0.6 * 360) * 7.9;
+      } else if (transporte === 'moto' && tiempo == '60min') {
+        huellaTransporte = (1.2 * 360) * 7.9;
+      } else if (transporte === 'moto' && tiempo == 'mas1hora') {
+        huellaTransporte = (5 * 360) * 7.9;
+      } else if (transporte === 'bici'&& tiempo == '30min') {
+        huellaTransporte = 0;
+      } else if (transporte === 'bici'&& tiempo == '60min') {
+        huellaTransporte = 0;
+      } else if (transporte === 'bici'&& tiempo == 'mas1hora') {
+        huellaTransporte = 0;
+      } else if (transporte === 'pub' && tiempo == '30min') {
+        huellaTransporte = (1.5 * 360) * 7.9;
+      } else if (transporte === 'pub' && tiempo == '60min') {
+        huellaTransporte = (3 * 360) * 7.9;
+      } else if (transporte === 'pub' && tiempo == 'mas1hora') {
+        huellaTransporte = (7.5 * 360) * 7.9;
+      } else if (transporte === 'vehiculo' && tiempo == '30min') {
+        huellaTransporte = (0.75 * 360) * 7.9;
+      } else if (transporte === 'vehiculo' && tiempo == '60min') {
+        huellaTransporte = (1.5 * 360) * 7.9;
+      } else if (transporte === 'vehiculo' && tiempo == 'mas1hora') {
+        huellaTransporte = (3.4 * 360) * 7.9;
+      } else if (transporte === 'pie'&& tiempo == '30min') {
+        huellaTransporte = 0;
+      } else if (transporte === 'pie'&& tiempo == '60min') {
+        huellaTransporte = 0;
+      } else if (transporte === 'pie'&& tiempo == 'mas1hora') {
+        huellaTransporte = 0;
+      }
+      
+      let huellaTransporteUni = 0;
+      if (transporteUni == 'lobobus') {
+        huellaTransporteUni = (0.66 * 360) * 7.9;
+      } else if (transporteUni == 'lobobici') {
+        huellaTransporteUni = 0;
+      } else if (transporteUni == 'pie') {
+        huellaTransporteUni = 0;
+      }
+
+      let huellaTransporteTotal = huellaTransporte + huellaTransporteUni;
+      //console.log('El cálculo de la huella de carbono es: ' + huellaTransporteTotal);
+      
+      //Cálculo de huella de carbono anual kgCO/año para electricidad
+      let huellaElectricidad = 0;
+      if (entrada == '7a8' && salida == 'antes6') {
+        huellaElectricidad = (1.2*360)*0.615;
+      } else if (entrada == '7a8' && salida == 'despues6') {
+        huellaElectricidad = (2.4*360)*0.615;
+      } else if (entrada == 'mas8' && salida == 'antes6') {
+        huellaElectricidad = 0;
+      } else if (entrada == 'mas8' && salida == 'despues6') {
+        huellaElectricidad = (1.2*360)*0.615;
+      }
+
+      if (aire === 'aireSi') {
+        huellaElectricidad += (8*360)*0.615;
+      }
+
+      if (cargar === 'cargarSi') {
+        huellaElectricidad += (0.194*360)*0.615;
+      }
+
+      //Cálculo de huella de carbono anual kgCO/año para gas LP
+      let huellaGas = 0;
+      if (comida == 'comidaSi') {
+        huellaGas = (0.8*360)*2.75;
+      } 
+
+      //Cálculo de huella de carbono anual kgCO/año para Agua y Residuos
+      let huellaAgua = 0;
+      if (sanitarios == '1vez') {
+        huellaAgua = (7*360)/1000;
+      } else if (sanitarios == '2veces') {
+        huellaAgua = (14*360)/1000;
+      } else if (sanitarios == 'mas4veces') {
+        huellaAgua = (30*360)/1000;
+      }
+
+      
+      let huellaCarbono = huellaTransporteTotal + huellaElectricidad + huellaGas + huellaAgua;
+      console.log('El cálculo de la huella de carbono es: ' + huellaCarbono + ' kgCO2/año');
+
+      //mostrar resultados
+      let resultadoURL = 'resultados.html'; // Cambia esto al nombre de tu página de resultados
+      resultadoURL += '?huella=' + encodeURIComponent(huellaCarbono); // Pasar el valor de huellaCarbono a la URL
+
+      window.location.href = resultadoURL;
+    }
+  </script>
+    
 </body>
 </html>
