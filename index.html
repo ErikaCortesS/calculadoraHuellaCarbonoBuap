@@ -17,6 +17,42 @@
     <link rel="stylesheet" href="assets/css/lightbox.css">
   </head>
 
+  <style>
+    /* Estilos para el botón circular */
+    .sabias-button {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(250,250,250,0.15) /* Fondo semitransparente */
+        border-radius: 50%;
+        cursor: pointer;
+        position: absolute;
+        right: 20px; /* Ajusta la posición según tus necesidades */
+        top: 20px; /* Ajusta la posición según tus necesidades */
+    }
+
+    /* Estilos para el recuadro de sabías */
+    .sabias-box {
+        display: block; /* Inicialmente oculto */
+        position: absolute;
+        background-color: rgba(250,250,250,0.15);/* Fondo semitransparente */
+        padding: 10px;
+        border: 1px solid #387f3387;
+        border-radius: 5px;
+        margin-top: 200px;
+        text-align: justify;
+        right: auto; /* Ajusta la posición según tus necesidades */
+    }
+
+    .sabias-box h3 {
+        color: #9cb9d5;
+    }
+
+    .sabias-box p {
+        color: #c7d1d4;
+    }
+</style>
+  
+
 <body style="background-color:#003c5e;">
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky">
@@ -46,7 +82,7 @@
     <div class="video-overlay header-text">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12">
+          <div class="col-lg-9 col-sm-9">
             <div class="caption">
               <br><br><br>
               <h2>¡Calcula tu Huella de Carbono!</h2>
@@ -54,9 +90,6 @@
               <hr>
               <p>Gracias por ser parte del cambio</p>
               <br>
-              <div class="main-button-red">
-                <a href="calculadora.html">Comienza ahora</a>
-              </div>
               <!--Aprender más-->
               <div>
                 <img src="assets/images/conocemas.png" alt="Imagen para aprender más" id="openModalBtn" style="max-width: 25% !important">
@@ -77,8 +110,47 @@
                 </div>
               </div>
               <!--Fin Aprender más-->
+              <div class="main-button-red">
+                <a href="calculadora.html">Comienza ahora</a>
+              </div>
             </div>
           </div>
+          <div class="col-lg-3 col-sm-3">
+            
+              <!-- Contenido actual... -->
+      
+      
+              <!-- Recuadro de sabías (inicialmente oculto) -->
+              <div class="sabias-box" id="sabiasBox">
+                  <h3>Sabías que...</h3> <br>
+                  <p>La BUAP implementó el Programa de Aprovechamiento Energético 
+                    de Residuos a Combustible invernadero (metano)? Tiene como como objetivo principal reducir las emisiones de gases de efecto invernadero al capturar y utilizar el metano generado por la descomposición de los residuos orgánicos.
+                   <hr></p> 
+                  <p>Ve la información completa en el Manual de Sostenibilidad de la BUAP:</p>
+                  <!-- Puedes agregar más información o cambiar el contenido según tus necesidades -->
+                  <br><button class="btn btn-success" onclick="descargarPDF()" style="margin-left: 150px;">Descargar</button>
+              </div>
+              <script>
+                function descargarPDF() {
+                    // Reemplaza 'ruta/del/archivo.pdf' con la ruta real del archivo PDF
+                    var rutaPDF = '\Manual Sostenibilidad BUAP.pdf';
+            
+                    // Crea un elemento de enlace temporal para descargar el PDF
+                    var enlace = document.createElement('a');
+                    enlace.href = rutaPDF;
+                    enlace.target = '_blank';
+                    enlace.download = 'Manual Sostenibilidad BUAP'; // Puedes cambiar el nombre del archivo si lo deseas
+            
+                    // Añade el enlace al documento y simula un clic para iniciar la descarga
+                    document.body.appendChild(enlace);
+                    enlace.click();
+            
+                    // Elimina el enlace temporal del documento
+                    document.body.removeChild(enlace);
+                }
+            </script>
+          
+        </div>
         </div>
       </div>
     </div>
@@ -111,6 +183,9 @@
         modal.style.display = 'none';
       }
     }
+
+
+  
   </script>
 </body>
 </html>

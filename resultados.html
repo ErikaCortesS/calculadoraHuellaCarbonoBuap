@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/lightbox.css">
-
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
       /* Estilo para la animación */
       @keyframes moveGraph {
@@ -29,9 +30,15 @@
           transform: translateY(0);
         }
       }
-      /* Aplica la animación a la gráfica */
+      canvas {
+          max-width: 100%;
+          height: auto;
+        }
+
+        /* Hacer la gráfica responsiva */
       #graficaBarras {
-        animation: moveGraph 2s 2s; /* Puedes ajustar la duración y repetición de la animación */
+          width: 100%;
+          height: 400px;
       }
     </style>
   </head>
@@ -53,7 +60,7 @@
   </header>
   <!-- ***** Header Area End ***** -->
 
-  <section class="heading-page header-text" id="top" style="padding-top: 0px; background-image: none;" !important>
+  <section id="top" style="padding-top: 0px; background-image: none;" !important>
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -63,6 +70,7 @@
   </section>
 
   <section class="meetings-page" id="meetings">
+    <br><br><br><br><br>
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -74,58 +82,102 @@
                 </div>
                 <div class="down-content">
                   <h1>Resultados de tu Huella de Carbono</h1>
-
+                  <br>
                   <div id="resultadoHuella"></div>
                   <div id="mensaje"></div>
-                  <div id="graficaBarras" style="width: 1200px; height: 400px;" class="col-lg-12"></div>
+                  <div id="graficaBarras" class="col-lg-12"></div>
 
                   <script>
                     // Obtener el valor de la huella de carbono de los parámetros de la URL
                     const params = new URLSearchParams(window.location.search);
                     const huellaCarbono = parseFloat(params.get('huella'));
-
-                    
+                    const nombre = params.get('nombre');
+                    const cantidadDispositivos = params.get('cantidadDispositivos');
+                    const transporte = params.get('transporte');
 
                     // Mostrar el resultado de la huella de carbono en la página
                     const resultadoElemento = document.getElementById('resultadoHuella');
-                    resultadoElemento.textContent = `Tu huella de carbono es: ${huellaCarbono.toLocaleString('es-ES', {
+                    resultadoElemento.textContent = `Hola ${nombre},\ntu huella de carbono es: ${huellaCarbono.toLocaleString('es-ES', {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
                     })} kg de CO\u2082`;
 
-
-
                     // Mostrar mensaje si la huella de carbono es alta
                     const mensajeElemento = document.getElementById('mensaje');
+                    let mensaje = '';  // Inicializar una cadena vacía
+                    let color = 'blue'; // Color predeterminado
+
                     if (huellaCarbono >= 1000) {
-                      mensajeElemento.textContent = '¡La huella de carbono es demasiado alta! Aparentemente es poco, pero imagina que cada habitante en el estado produzca esa cantidad cada día. ';
-                      mensajeElemento.style.color = 'red'; // Cambiar el color del mensaje si se cumple la condición
+                      mensaje = '¡La huella de carbono es demasiado alta! Aparentemente es poco, pero imagina que cada habitante en el estado produzca esa cantidad cada día. ';
+                      color = 'red';
                     } else {
-                      mensajeElemento.textContent = '¡Estás haciendo un buen trabajo!';
-                      mensajeElemento.style.color = 'blue'; // Cambiar el color del mensaje si se cumple la condición
+                      mensaje = '¡Estás haciendo un buen trabajo!';
                     }
 
-                    // Calcular el porcentaje respecto a 7.8 millones de toneladas
-                    const total = 7800000; // 7.8 millones de toneladas
-                    const porcentaje = (huellaCarbono / total) * 100;
+                    if (cantidadDispositivos > 2) {
+                      mensaje += '<br><hr>¡OJO, estás cargando demasiados dispositivos!';
+                      color = 'red';
+                    }
 
-                    // Crear la gráfica de barras
+                    if (transporte === 'vehiculo') {
+                      mensaje += '<br><hr>Consejo: Podrías considerar otras alternativas de transporte para tu traslado hacia la universidad.';
+                      color = 'red';
+                    }
+
+                    // Configurar el contenido del elemento después de todas las condiciones
+                    mensajeElemento.innerHTML = mensaje;
+
+                    // Establecer el color basado en la última condición
+                    mensajeElemento.style.color = color;
+
+                    console.log('Cantidad de dispositivos: ', cantidadDispositivos);
+                    console.log('Transporte ', transporte);
+
+
+
+                    console.log('Huella ', huellaCarbono);
+                    
+                    // Calcular el porcentaje respecto a 4 toneladas (4000kg)
                     const data = [{
-                      x: ['Tu Huella de Carbono', 'Huella de carbono de Puebla'],
-                      y: [porcentaje, 100 - porcentaje],
+                      x: ['Tu huella de carbono en kg de CO\u2082', '4 toneladas de CO\u2082 (4000 kg)'],
+                      y: [huellaCarbono, 4000],
                       type: 'bar',
                       marker: {
-                        color: ['red', 'green'] // Colores para las barras (rojo para la huella de carbono y verde para el restante)
-                      }
+                        color: ['red', 'green'],
+                      },
                     }];
+
                     const layout = {
-                      title: 'Porcentaje de tu Huella de Carbono respecto a la Huella generada por el estado de Puebla (7.8 millones de toneladas en el 2008)',
+                      title: {
+                        text: 'Comparativa de tu Huella de Carbono respecto a la Huella promedio generada por una persona en el estado de Puebla',
+                        font: {
+                          color: 'grey', // Cambiar el color del título aquí
+                        },
+                      },
+                      xaxis: {
+                        title: '',
+                      },
+                      yaxis: {
+                        title: 'Cantidad (kg de CO\u2082)',
+                      },
+                      plot_bgcolor: 'rgba(240,240,240,0.7)', // Color de fondo de la gráfica
                     };
+
+                    // Hacer que la gráfica sea responsiva
+                    window.addEventListener('resize', function() {
+                      const graficaBarras = document.getElementById('graficaBarras');
+                      Plotly.react(graficaBarras, data, layout);
+                    });
+
+                    // Crear la gráfica inicial
                     Plotly.newPlot('graficaBarras', data, layout);
+
                   </script>
-                  <div>
-                    <p>La reducción de la huella de carbono es esencial para contrarrestar el cambio climático y proteger nuestro entorno.</p>
-                  </div>
+                  Desde una perspectiva ambiental y de sostenibilidad, 4 toneladas de CO₂ al año por persona es una cantidad considerable.
+                  Reducir nuestras emisiones es crucial para proteger el medio ambiente y limitar los efectos del cambio climático. Se recomienda
+                  trabajar hacia una huella de carbono más baja adoptando prácticas más sostenibles, como usar transporte público, reducir el
+                  consumo de energía y apoyar fuentes de energía renovable. <br><hr>
+                  La reducción de la huella de carbono es esencial para contrarrestar el cambio climático y proteger nuestro entorno.
                 </div>
               </div>
             </div>

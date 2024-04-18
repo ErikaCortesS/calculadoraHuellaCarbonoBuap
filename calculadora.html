@@ -31,7 +31,7 @@
       <div class="row">
         <div class="col-lg-12" style="background-color: rgb(82,160,40,0.3)">
           <h2>Listo, empecemos a calcular.</h2>
-          <h6>El cuestionario toma menos de 5 minutos.</h6>
+          <h6>No te tomará más de 5 minutos.</h6>
           <br>
         </div>
       </div>
@@ -54,7 +54,7 @@
               </div>
               <div class="down-content">
                 <form id="calcularHuella">
-                  <label for="nombre" class="form-label">¡Hola! ¿Cuál es tu nombre?</label><br>
+                  <label for="nombre" class="form-label">¡Hola! ¿Cuál es tu nombre o alias?</label><br>
                   <input type="text" class="form-control" id="nombre" name="nombre" required>                  
                 </form>
               </div>
@@ -163,7 +163,7 @@
               </div>
               <div class="down-content">
                 <form id="calcularHuella">
-                  <label for="dias" class="form-label">¿Cuántos días a la semana vas a la universidad?</label><br>
+                  <label for="dias" class="form-label">¿Cuántos días a la semana asistes a la universidad?</label><br>
                   <select name="dias" class="form-control">
                     <option value="">Selecciona una opción</option>
                     <option value="1">1</option>
@@ -253,15 +253,39 @@
               <div class="down-content">
                 <form id="calcularHuella">
                   <label for="cargar" class="form-label">¿Sueles cargar tus dispositivos electrónicos dentro de la universidad?</label><br>
-                  <select name="cargar" class="form-control">
+                  <select name="cargar" id="cargar" class="form-control">
                     <option value="">Selecciona una opción</option>
                     <option value="cargarSi">Si</option>
                     <option value="cargarNo">No</option>
-                </select>
+                  </select>
+                  <div id="cantidadDispositivosDiv" style="display: none;">
+                    <br>
+                    <label for="cantidadDispositivos" class="form-label">¿Cuántos dispositivos electrónicos cargas?</label><br>
+                    <select name="cantidadDispositivos" id="cantidadDispositivos" class="form-control">
+                      <option value="">Selecciona una opción</option>
+                      <option value=1>1 dispositivo</option>
+                      <option value=2>2 dispositivos</option>
+                      <option value=3>3 dispositivos</option>
+                      <option value=4>Más de 3 dispositivos</option>
+                    </select>
+                  </div>
                 </form>
               </div>
             </div>
           </div>
+          
+          <script>
+            document.getElementById('cargar').addEventListener('change', function() {
+              var cantidadDispositivosDiv = document.getElementById('cantidadDispositivosDiv');
+              var cargarValue = this.value;
+          
+              if (cargarValue === 'cargarSi') {
+                cantidadDispositivosDiv.style.display = 'block';
+              } else {
+                cantidadDispositivosDiv.style.display = 'none';
+              }
+            });
+          </script>
 
           <div class="col-lg-4 templatemo-item-col all imp">
             <div class="meeting-item">
@@ -306,7 +330,18 @@
             </div>
           </div>
 
+          <div class="sub-header">
+            <div class="container">
+              <div class="row" style="text-align: center; background-color: rgb(235,279,226,0.4);">
+                
+                    <p> Los datos solicitados son utilizados exclusivamente con fines estadísticos. Tu privacidad es nuestra prioridad. ¡Gracias por tu confianza!</p>
+                
+              </div>
+            </div>
+          </div>
+
           <div class="col-lg-12">
+            <br>
             <div class="main-button-red">
               <img src="assets/images/huella2.png" alt="Imagen descriptiva" style="width: 100px">
               <button type="button" class="btn btn-success" onclick="CalcularHuella()">Calcular</button>
@@ -342,6 +377,8 @@
       let cargar = document.getElementsByName('cargar')[0].value;
       let comida = document.getElementsByName('comida')[0].value;
       let sanitarios = document.getElementsByName('sanitarios')[0].value;
+      // Obtener el valor de la cantidad de dispositivos seleccionada
+      let cantidadDispositivos = document.getElementById('cantidadDispositivos').value;
 
       //Cálculo de huella de carbono anual kgCO/año para transporte (Gasolina)
       let huellaTransporte = 0;
@@ -397,6 +434,7 @@
       
       //Cálculo de huella de carbono anual kgCO/año para electricidad
       let huellaElectricidad = 0;
+      let huellaElectricidadCargarDisp = 0;
       if (entrada == '7a8' && salida == 'antes6') {
         huellaElectricidad = (1.2*360)*0.615;
       } else if (entrada == '7a8' && salida == 'despues6') {
@@ -412,8 +450,19 @@
       }
 
       if (cargar === 'cargarSi') {
-        huellaElectricidad += (0.194*360)*0.615;
+        huellaElectricidadCargarDisp += (0.194*360)*0.615;
+        if (cantidadDispositivos == 1) {
+          huellaElectricidadCargarDisp = huellaElectricidadCargarDisp;
+        } else if (cantidadDispositivos == 2) {
+          huellaElectricidadCargarDisp = huellaElectricidadCargarDisp*2;
+        } else if (cantidadDispositivos == 3) {
+          huellaElectricidadCargarDisp = huellaElectricidadCargarDisp*3;
+        } else if (cantidadDispositivos == 4) {
+          huellaElectricidadCargarDisp = huellaElectricidadCargarDisp*4;
+        }
       }
+
+      huellaElectricidad += huellaElectricidadCargarDisp;
 
       //Cálculo de huella de carbono anual kgCO/año para gas LP
       let huellaGas = 0;
@@ -436,8 +485,12 @@
       console.log('El cálculo de la huella de carbono es: ' + huellaCarbono + ' kgCO2/año');
 
       //mostrar resultados
-      let resultadoURL = 'resultados.html'; // Cambia esto al nombre de tu página de resultados
-      resultadoURL += '?huella=' + encodeURIComponent(huellaCarbono); // Pasar el valor de huellaCarbono a la URL
+      
+      let resultadoURL = 'resultados.html';
+      resultadoURL += '?nombre=' + encodeURIComponent(nombre); // Pasar el valor del nombre a la URL
+      resultadoURL += '&huella=' + encodeURIComponent(huellaCarbono); // Pasar el valor de la huella de carbono a la URL
+      resultadoURL += '&cantidadDispositivos=' + encodeURIComponent(cantidadDispositivos);
+      resultadoURL += '&transporte=' + encodeURIComponent(transporte);
 
       window.location.href = resultadoURL;
     }
